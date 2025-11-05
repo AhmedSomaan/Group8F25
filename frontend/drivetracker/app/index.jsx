@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput } from "react-native";
+import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 import React from "react";
 
 const Home = () => {
@@ -39,6 +39,13 @@ const Home = () => {
           placeholder="Phone Number"
           keyboardType="numeric"
         />
+        <Button
+          onPress={() => alert("Button Pressed!")}
+          title="Register"
+          color="#000000ff"
+          accessibilityLabel="Submit button to register"
+          backgroundColor="#b1b1b1ff"
+        />
       </View>
     </View>
   );
@@ -65,6 +72,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
+    width: 200,
     margin: 12,
     borderWidth: 1,
     padding: 10,
