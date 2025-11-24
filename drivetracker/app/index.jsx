@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
+import { Link } from "expo-router";
 
 const Home = () => {
   return (
@@ -9,6 +10,12 @@ const Home = () => {
       <View style={styles.container}>
         <Text>Welcome to DriveTracker!</Text>
       </View>
+      <Link href="/track">
+        <Text>Go to Track</Text>
+      </Link>
+      <Link href="/history">
+        <Text>Go to History</Text>
+      </Link>
     </View>
   );
 };
