@@ -24,7 +24,9 @@ const Home = () => {
         onPress={() => router.push("/history")}
         accessibilityRole="button"
       >
-        <Text style={[styles.buttonText, styles.secondaryButtonText]}>View Trip History</Text>
+        <Text style={[styles.buttonText, styles.secondaryButtonText]}>
+          View Trip History
+        </Text>
       </TouchableOpacity>
     </View>
   );
