@@ -85,14 +85,31 @@ export async function getOrCreateDemoUser() {
 }
 
 export async function getTripsForUser(userId) {
-
+  if (!ensureConfigured()) return [];
+  const { data, error } = await supabase
+    .from("trips")
+    .select("*,driving_scores(*)")
+    .eq("user_id", userId)
+    .order("start_time", { ascending: false });
+  if (error) {
+    console.warn("Failed to fetch trips:", error.message);
+    return [];
+  }
+  return data || [];
 }
 
 export async function insertTrip(userId) {
-
+  if (!ensureConfigured()) return null;
+  const { data, error } = await supabase
+    .from("trips")
+    .insert([trip])
+    .select()
+    .maybeSingle();
+  if (error) {
+    console.warn("Failed to insert trip:", error.message);
+    return null;
+  }
+  return data || null;
 }
 
-export async function insertScore(score) {
-
-}
-
+export async function insertScore(score) {}
