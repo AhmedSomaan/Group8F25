@@ -20,3 +20,12 @@ export function haversineMeters(a, b) {
   return R * c;
 }
 
+/** Compute total meters from a path array [{latitude, longitude, timestamp}, ...] */
+export function computeTotalMetersFromPath(path = []) {
+  if (!path || path.length < 2) return 0;
+  let total = 0;
+  for (let i = 1; i < path.length; i++) {
+    total += haversineMeters(path[i - 1], path[i]);
+  }
+  return total;
+}
