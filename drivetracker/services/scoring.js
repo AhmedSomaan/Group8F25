@@ -29,3 +29,13 @@ export function computeTotalMetersFromPath(path = []) {
   }
   return total;
 }
+
+/** Compute average km/h from path (based on first/last timestamp and distance). Returns a number (km/h). */
+export function computeAvgKmhFromPath(path = []) {
+  if (!path || path.length < 2) return 0;
+  const totalMeters = computeTotalMetersFromPath(path);
+  const durationSec =
+    (path[path.length - 1].timestamp - path[0].timestamp) / 1000;
+  const avgMs = durationSec > 0 ? totalMeters / durationSec : 0;
+  return avgMs * 3.6;
+}
