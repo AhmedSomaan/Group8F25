@@ -39,3 +39,44 @@ export function computeAvgKmhFromPath(path = []) {
   const avgMs = durationSec > 0 ? totalMeters / durationSec : 0;
   return avgMs * 3.6;
 }
+
+import { THRESHOLDS } from "./thresholds";
+
+/** Braking score: simple penalty per hard brake. Keep function small so rule can change. */
+export function computeBrakingScore(
+  hardBrakes,
+  base = 100,
+  perEventPenalty = THRESHOLDS.brakingPenalty
+) {
+  return Math.max(0, base - hardBrakes * perEventPenalty);
+}
+
+/** Acceleration score: simple penalty per hard accel. */
+export function computeAccelScore(
+  hardAccels,
+  base = 100,
+  perEventPenalty = THRESHOLDS.accelPenalty
+) {
+  return Math.max(0, base - hardAccels * perEventPenalty);
+}
+
+/** Speed score: penalize average speeds above a threshold. */
+export function computeSpeedScore(
+  avgKmh,
+  threshold = THRESHOLDS.speedThreshold
+) {
+  if (avgKmh <= threshold) return 100;
+  return Math.max(0, Math.round(100 - (avgKmh - threshold) * 1.5));
+}
+
+/** Combine component scores into an overall score using configurable weights. */
+export function computeOverallScore(
+  { speed_score = 100, accel_score = 100, braking_score = 100 } = {},
+  weights = THRESHOLDS.weights
+) {
+  const overall =
+    weights.speed * speed_score +
+    weights.accel * accel_score +
+    weights.braking * braking_score;
+  return Math.round(overall);
+}
