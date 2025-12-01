@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getOrCreateDemoUser, getTripsForUser } from "../models/supabaseModel";
-import HistoryView from "../views/HistoryView.jsx";
+import HistoryView from "../views/HistoryView";
 
 const HistoryController = () => {
   const [trips, setTrips] = useState([]);
