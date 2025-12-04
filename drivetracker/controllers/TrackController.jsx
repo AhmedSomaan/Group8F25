@@ -55,19 +55,6 @@ const TrackController = () => {
     try {
       // eslint-disable-next-line global-require
       const MapLib = require("react-native-maps");
-      const MapLib = require("react-native-maps");
-      // Wrap MapView so we can inject the Google provider on Android
-      const RawMapView = MapLib.default || MapLib.MapView  || MapLib;
-      const { PROVIDER_GOOGLE } = MapLib || {};
-      const MapViewWrapper = (props) => {
-        const provider = Platform.OS === "android" && PROVIDER_GOOGLE ? PROVIDER_GOOGLE : undefined;
-        return <RawMapView {...props} provider={provider} />;
-      };
-      mapCompsRef.current = {
-        MapView: MapViewWrapper,
-        Polyline: MapLib.Polyline,
-        Marker: MapLib.Marker,
-      };
       mapCompsRef.current = {
         MapView: MapLib.default || MapLib.MapView || MapLib,
         Polyline: MapLib.Polyline,
