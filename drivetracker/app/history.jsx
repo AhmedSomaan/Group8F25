@@ -1,21 +1,3 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import HistoryController from "../controllers/HistoryController";
 
-const History = () => {
-  return (
-    <View style={styles.container}>
-      <Text>History</Text>
-    </View>
-  )
-}
-
-export default History
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+export default HistoryController;

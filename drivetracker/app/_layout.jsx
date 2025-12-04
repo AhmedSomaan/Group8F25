@@ -5,7 +5,13 @@ import React from "react";
 const RootLayout = () => {
   return (
     <View style={{ flex: 1 }}>
-      <Stack />
+      <Stack
+        screenOptions={{
+          // hide the header title but keep the back button visible
+          headerTitle: "",
+          headerBackTitleVisible: false,
+        }}
+      />
     </View>
   );
 };
